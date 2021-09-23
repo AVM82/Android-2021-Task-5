@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("io.gitlab.arturbosch.detekt").version("1.18.1")
+    id("org.jlleitschuh.gradle.ktlint").version("10.2.0")
 }
 
 android {
