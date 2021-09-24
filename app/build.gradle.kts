@@ -5,7 +5,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint").version("10.2.0")
     id("dagger.hilt.android.plugin")
     id("kotlin-parcelize")
-    kotlin("kapt")
+    id("kotlin-kapt")
 }
 
 android {
@@ -37,6 +37,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+//    buildFeatures {
+//        viewBinding = true
+//    }
+
 }
 
 detekt {
@@ -65,6 +70,9 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-beta01")
+//    implementation("androidx.fragment:fragment-ktx:1.3.6")
+
     //hilt
     implementation("com.google.dagger:hilt-android:2.38.1")
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
@@ -78,8 +86,8 @@ dependencies {
     //moshi
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
     implementation("com.squareup.moshi:moshi:1.11.0")
-//    implementation("com.squareup.moshi:moshi-kotlin:1.11.0")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.11.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.11.0")
+//    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.11.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
