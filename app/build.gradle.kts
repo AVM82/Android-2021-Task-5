@@ -4,6 +4,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt").version("1.18.1")
     id("org.jlleitschuh.gradle.ktlint").version("10.2.0")
     id("dagger.hilt.android.plugin")
+    id("kotlin-parcelize")
     kotlin("kapt")
 }
 
