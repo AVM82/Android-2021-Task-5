@@ -6,8 +6,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import org.rsschool.android2021task5.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -19,17 +23,31 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun moshiProvider (): Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-
+    fun moshiProvider(): Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
     @Singleton
     @Provides
-    fun provideRetrofit(BASE_URL: String, moshi: Moshi): Retrofit {
+    fun provideInterceptor() = HttpLoggingInterceptor().apply {
+        level =
+            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+            else HttpLoggingInterceptor.Level.NONE
+    }
+
+    @Singleton
+    @Provides
+    fun provideOkHttpClient(interceptor: HttpLoggingInterceptor) = OkHttpClient.Builder()
+        .readTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .addInterceptor(interceptor = interceptor)
+        .build()
+
+    @Singleton
+    @Provides
+    fun provideRetrofit(BASE_URL: String, moshi: Moshi, client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(client)
             .build()
     }
 }
-
-

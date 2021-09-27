@@ -9,12 +9,12 @@ plugins {
 }
 
 android {
-    compileSdk = 30
+    compileSdk = 31
 
     defaultConfig {
         applicationId = "org.rsschool.android2021task5"
         minSdk = 21
-        targetSdk = 30
+        targetSdk = 31
         versionCode = 1
         versionName = "1.0"
 
@@ -71,7 +71,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-beta01")
-//    implementation("androidx.fragment:fragment-ktx:1.3.6")
+    implementation("androidx.fragment:fragment-ktx:1.3.6")
+
+    //LOG http
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
     //hilt
     implementation("com.google.dagger:hilt-android:2.38.1")

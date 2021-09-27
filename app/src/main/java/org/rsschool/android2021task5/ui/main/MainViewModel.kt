@@ -1,5 +1,6 @@
 package org.rsschool.android2021task5.ui.main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,8 +11,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
-    init {
-        viewModelScope.launch { repository.getImages()?.map { println(it) } }
+    fun foo() {
+        viewModelScope.launch { repository.getImages()?.map { Log.d("IMAGE", it.toString()) } }
 
     }
 
