@@ -7,11 +7,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Image(
     @Json(name = "id")
-    private val id: String,
+    val id: String,
     @Json(name = "url")
-    private val url: String,
+    val url: String,
     @Json(name = "height")
-    private val height: Int,
+    val height: Int,
     @Json(name = "width")
-    private val width: Int
+    val width: Int
 ) : Parcelable
