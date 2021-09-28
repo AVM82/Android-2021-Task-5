@@ -19,7 +19,7 @@ class ImageViewHolder(private val binding: GridViewItemBinding) :
                 .apply(
                     RequestOptions().placeholder(R.drawable.ic_baseline_image_24)
                         .error(R.drawable.ic_baseline_broken_image_24)
-                        .centerInside()
+                        .centerCrop()
                 ).into(binding.image)
         } ?: views {
             image.setImageResource(R.drawable.ic_baseline_cloud_download_24)

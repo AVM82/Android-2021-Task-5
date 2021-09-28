@@ -68,10 +68,12 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.1")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-beta01")
     implementation("androidx.fragment:fragment-ktx:1.3.6")
+
+    val lifecycleVersion = "2.4.0-alpha01"
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
 
     //LOG http
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
@@ -89,13 +91,13 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
 
     //moshi
-    val moshiVersion = "1.11.0"
+    val moshiVersion = "1.12.0"
     implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
-    implementation("com.squareup.moshi:moshi:$moshiVersion")
+    implementation("com.squareup.moshi:moshi:1.12.0")
     implementation("com.squareup.moshi:moshi-kotlin:$moshiVersion")
 
     // Glide
-    val glideVersion = "4.11.0"
+    val glideVersion = "4.12.0"
     implementation("com.github.bumptech.glide:glide:$glideVersion")
 
     //Paging 3

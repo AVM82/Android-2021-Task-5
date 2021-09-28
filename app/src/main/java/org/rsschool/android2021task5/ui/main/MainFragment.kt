@@ -7,14 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.addRepeatingJob
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collectLatest
 import org.rsschool.android2021task5.databinding.MainFragmentBinding
-import org.rsschool.android2021task5.model.ImageDTO
 import org.rsschool.android2021task5.ui.adapter.ImagesAdapter
 
 @AndroidEntryPoint
@@ -26,9 +22,10 @@ class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by viewModels()
     private val binding get() = requireNotNull(_binding)
-    private val adapter: ImagesAdapter?
-        get() = views { itemList.adapter as? ImagesAdapter }
 
+    private val adapter by lazy(LazyThreadSafetyMode.NONE) {
+        ImagesAdapter()
+    }
     private var _binding: MainFragmentBinding? = null
 
     override fun onCreateView(
@@ -43,24 +40,13 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         views {
-            itemList.adapter = ImagesAdapter()
+            itemList.adapter = adapter
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.imagesListFlow.onEach(::renderImageList).launchIn(lifecycleScope)
-            }
-        }
-
-        viewModel.getImages()
-    }
-
-    private fun renderImageList(imageDTOS: List<ImageDTO>) {
-        adapter?.run {
-            submitList(imageDTOS)
+        addRepeatingJob(Lifecycle.State.STARTED) {
+            viewModel.imagesFlow.collectLatest { pagingData -> adapter.submitData(pagingData) }
         }
     }
-
 
     private fun <T> views(block: MainFragmentBinding.() -> T) = binding.block()
 
