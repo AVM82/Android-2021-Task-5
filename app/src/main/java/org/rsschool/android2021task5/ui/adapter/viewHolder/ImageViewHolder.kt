@@ -1,4 +1,4 @@
-package org.rsschool.android2021task5.ui.adapter
+package org.rsschool.android2021task5.ui.adapter.viewHolder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
