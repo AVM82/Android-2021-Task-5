@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.rsschool.android2021task5.databinding.MainFragmentBinding
-import org.rsschool.android2021task5.model.Image
+import org.rsschool.android2021task5.model.ImageDTO
 import org.rsschool.android2021task5.ui.adapter.ImagesAdapter
 
 @AndroidEntryPoint
@@ -55,9 +55,9 @@ class MainFragment : Fragment() {
         viewModel.getImages()
     }
 
-    private fun renderImageList(images: List<Image>) {
+    private fun renderImageList(imageDTOS: List<ImageDTO>) {
         adapter?.run {
-            submitList(images)
+            submitList(imageDTOS)
         }
     }
 

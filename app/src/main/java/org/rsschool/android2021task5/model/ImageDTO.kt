@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Image(
+data class ImageDTO(
     @Json(name = "id")
     val id: String,
     @Json(name = "url")

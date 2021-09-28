@@ -7,12 +7,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import org.rsschool.android2021task5.R
 import org.rsschool.android2021task5.databinding.GridViewItemBinding
-import org.rsschool.android2021task5.model.Image
+import org.rsschool.android2021task5.model.ImageDTO
 
 class ImageViewHolder(private val binding: GridViewItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: Image) {
+    fun bind(item: ImageDTO) {
         itemView.run {
 
         }

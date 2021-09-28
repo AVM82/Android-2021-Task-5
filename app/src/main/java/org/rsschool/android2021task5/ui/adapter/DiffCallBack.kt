@@ -1,11 +1,12 @@
 package org.rsschool.android2021task5.ui.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import org.rsschool.android2021task5.model.Image
+import org.rsschool.android2021task5.model.ImageDTO
 
-object DiffCallBack : DiffUtil.ItemCallback<Image>() {
-    override fun areItemsTheSame(oldItem: Image, newItem: Image): Boolean =
+object DiffCallBack : DiffUtil.ItemCallback<ImageDTO>() {
+    override fun areItemsTheSame(oldItem: ImageDTO, newItem: ImageDTO): Boolean =
         oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: Image, newItem: Image): Boolean = oldItem == newItem
+    override fun areContentsTheSame(oldItem: ImageDTO, newItem: ImageDTO): Boolean =
+        oldItem == newItem
 }

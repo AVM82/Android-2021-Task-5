@@ -1,9 +1,10 @@
 package org.rsschool.android2021task5.repository
 
-import org.rsschool.android2021task5.model.Image
+import org.rsschool.android2021task5.model.ImageDTO
+import retrofit2.Response
 
 interface Repository {
 
-    suspend fun getImages(): List<Image>
+    suspend fun getImages(): Response<List<ImageDTO>>
 
 }
