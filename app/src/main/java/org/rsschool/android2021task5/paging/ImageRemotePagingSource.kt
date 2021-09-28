@@ -5,9 +5,8 @@ import androidx.paging.PagingState
 import org.rsschool.android2021task5.api.ApiService
 import org.rsschool.android2021task5.model.ImageDTO
 import retrofit2.HttpException
-import javax.inject.Inject
 
-class ImageRemotePagingSource @Inject constructor(private val apiService: ApiService) :
+class ImageRemotePagingSource(private val apiService: ApiService) :
     PagingSource<Int, ImageDTO>() {
     override fun getRefreshKey(state: PagingState<Int, ImageDTO>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
