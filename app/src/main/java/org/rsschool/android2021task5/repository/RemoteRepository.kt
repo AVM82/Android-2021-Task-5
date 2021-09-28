@@ -11,11 +11,10 @@ import javax.inject.Inject
 
 class RemoteRepository @Inject constructor(private val apiService: ApiService) : Repository {
 
-    override suspend fun fetchImagesFlow(pagingConfig: PagingConfig): Flow<PagingData<ImageDTO>> {
+    override fun fetchImagesFlow(pagingConfig: PagingConfig): Flow<PagingData<ImageDTO>> {
         return Pager(
             config = pagingConfig,
             pagingSourceFactory = { ImageRemotePagingSource(apiService) }
         ).flow
     }
-
 }

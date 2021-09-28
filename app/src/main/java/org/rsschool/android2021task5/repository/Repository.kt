@@ -8,14 +8,13 @@ import org.rsschool.android2021task5.paging.ImageRemotePagingSource
 
 interface Repository {
 
-    suspend fun fetchImagesFlow(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<ImageDTO>>
+    fun fetchImagesFlow(pagingConfig: PagingConfig = getDefaultPageConfig()): Flow<PagingData<ImageDTO>>
 
 
     private fun getDefaultPageConfig(): PagingConfig {
         return PagingConfig(
             pageSize = ImageRemotePagingSource.DEFAULT_PAGE_SIZE,
-            enablePlaceholders = false
+            enablePlaceholders = true
         )
     }
-
 }

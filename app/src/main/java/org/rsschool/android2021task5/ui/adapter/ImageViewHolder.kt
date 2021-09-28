@@ -12,17 +12,18 @@ import org.rsschool.android2021task5.model.ImageDTO
 class ImageViewHolder(private val binding: GridViewItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: ImageDTO) {
-        itemView.run {
-
+    fun bind(item: ImageDTO?) {
+        item?.let {
+            Glide.with(itemView.context)
+                .load((it.url))
+                .apply(
+                    RequestOptions().placeholder(R.drawable.ic_baseline_image_24)
+                        .error(R.drawable.ic_baseline_broken_image_24)
+                        .centerInside()
+                ).into(binding.image)
+        } ?: views {
+            image.setImageResource(R.drawable.ic_baseline_cloud_download_24)
         }
-        Glide.with(itemView.context)
-            .load((item.url))
-            .apply(
-                RequestOptions().placeholder(R.drawable.ic_baseline_image_24)
-                    .error(R.drawable.ic_baseline_broken_image_24)
-                    .centerInside()
-            ).into(binding.image)
     }
 
     companion object {
