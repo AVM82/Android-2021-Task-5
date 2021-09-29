@@ -36,8 +36,8 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideOkHttpClient(interceptor: HttpLoggingInterceptor) = OkHttpClient.Builder()
-        .readTimeout(30, TimeUnit.SECONDS)
-        .connectTimeout(30, TimeUnit.SECONDS)
+        .readTimeout(TIME_OUT, TimeUnit.SECONDS)
+        .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
         .addInterceptor(interceptor = interceptor)
         .build()
 
@@ -49,5 +49,9 @@ class NetworkModule {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(client)
             .build()
+    }
+
+    companion object {
+        private const val TIME_OUT = 5L
     }
 }
