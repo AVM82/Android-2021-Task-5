@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import org.rsschool.android2021task5.R
 import org.rsschool.android2021task5.databinding.GridViewItemBinding
@@ -17,8 +18,11 @@ class ImageViewHolder(private val binding: GridViewItemBinding) :
             Glide.with(itemView.context)
                 .load((it.url))
                 .apply(
-                    RequestOptions().placeholder(R.drawable.ic_baseline_image_24)
+                    RequestOptions()
+                        .placeholder(R.drawable.loading_animation)
                         .error(R.drawable.ic_baseline_broken_image_24)
+                        .fallback(R.drawable.ic_baseline_photo_camera_24)
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                         .centerCrop()
                 ).into(binding.image)
         } ?: views {

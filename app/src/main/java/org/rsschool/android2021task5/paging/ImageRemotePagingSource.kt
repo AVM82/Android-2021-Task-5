@@ -42,7 +42,7 @@ class ImageRemotePagingSource(private val apiService: ApiService) :
     }
 
     companion object {
-        const val DEFAULT_PAGE_SIZE = 20
+        const val DEFAULT_PAGE_SIZE = 10
         const val MAX_PAGE_SIZE = 20
         const val INITIAL_PAGE_NUMBER = 1
     }
