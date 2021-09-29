@@ -1,9 +1,7 @@
 package org.rsschool.android2021task5.paging
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import kotlinx.coroutines.flow.catch
 import org.rsschool.android2021task5.api.ApiService
 import org.rsschool.android2021task5.model.ImageDTO
 import retrofit2.HttpException
@@ -21,7 +19,7 @@ class ImageRemotePagingSource(private val apiService: ApiService) :
         try {
             val page = params.key ?: INITIAL_PAGE_NUMBER
             val pageSize = params.loadSize.coerceAtMost(MAX_PAGE_SIZE)
-            val response = apiService.getImages(page, pageSize)
+            val response = apiService.getImages(limit = pageSize, page = page)
             return if (response.isSuccessful) {
                 val images = response.body().orEmpty()
                 val nextPageNumber = if (images.isEmpty()) null else page + 1

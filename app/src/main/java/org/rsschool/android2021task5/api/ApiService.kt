@@ -12,11 +12,15 @@ interface ApiService {
 
     @GET("images/search")
     suspend fun getImages(
-        @Query("limit") @IntRange(
+        @Query("limit")
+        @IntRange(
             from = 1,
             to = MAX_PAGE_SIZE.toLong()
-        ) limit: Int = DEFAULT_PAGE_SIZE,
-        @Query("page") @IntRange(from = 1) page: Int = 1,
+        )
+        limit: Int = DEFAULT_PAGE_SIZE,
+        @Query("page")
+        @IntRange(from = 1)
+        page: Int = 1,
         @Query("order") order: Order = Order.RAND
     ): Response<List<ImageDTO>>
 
