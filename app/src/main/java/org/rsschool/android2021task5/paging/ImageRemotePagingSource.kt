@@ -37,7 +37,6 @@ class ImageRemotePagingSource(private val apiService: ApiService) :
         } catch (e: Exception) {
             return LoadResult.Error(e)
         }
-
     }
 
     companion object {
