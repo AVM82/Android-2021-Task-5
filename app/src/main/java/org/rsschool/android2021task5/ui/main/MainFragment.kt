@@ -1,34 +1,37 @@
 package org.rsschool.android2021task5.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.addRepeatingJob
 import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import org.rsschool.android2021task5.R
 import org.rsschool.android2021task5.databinding.MainFragmentBinding
+import org.rsschool.android2021task5.model.ImageDTO
 import org.rsschool.android2021task5.ui.adapter.ImagesAdapter
 import org.rsschool.android2021task5.ui.adapter.ImagesLoadStateAdapter
+import org.rsschool.android2021task5.ui.detail.DetailFragment
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
     companion object {
+        @JvmStatic
         fun newInstance() = MainFragment()
     }
 
     private val viewModel: MainViewModel by viewModels()
     private val binding get() = requireNotNull(_binding)
-
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
-        ImagesAdapter()
+        ImagesAdapter(ImagesAdapter.OnClickListener { renderDetailFragment(it) })
     }
     private var _binding: MainFragmentBinding? = null
 
@@ -63,6 +66,13 @@ class MainFragment : Fragment() {
                     adapter.submitData(pagingData)
                 }
             }
+        }
+    }
+
+    private fun renderDetailFragment(image: ImageDTO) {
+        parentFragmentManager.commit {
+            addToBackStack("detailFragment")
+            replace(R.id.container, DetailFragment.newInstance(image))
         }
     }
 
