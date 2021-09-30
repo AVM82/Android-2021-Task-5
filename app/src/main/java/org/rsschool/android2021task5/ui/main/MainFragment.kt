@@ -72,6 +72,12 @@ class MainFragment : Fragment() {
     private fun renderDetailFragment(image: ImageDTO) {
         parentFragmentManager.commit {
             addToBackStack("detailFragment")
+            setCustomAnimations(
+                R.animator.card_flip_right_in,
+                R.animator.card_flip_right_out,
+                R.animator.card_flip_left_in,
+                R.animator.card_flip_left_out
+            )
             replace(R.id.container, DetailFragment.newInstance(image))
         }
     }

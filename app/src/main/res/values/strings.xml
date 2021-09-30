@@ -9,4 +9,6 @@
     <string name="height">Height: %s</string>
     <string name="detail_image_description">Cute cat image</string>
     <string name="save_button_text">SAVE</string>
+    <integer name="card_flip_duration_full">1000</integer>
+    <integer name="card_flip_duration_half">500</integer>
 </resources>
