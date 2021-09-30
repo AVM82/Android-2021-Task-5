@@ -4,4 +4,8 @@
     <string name="load_state_item_error_text">The server is not responding</string>
     <string name="load_state_retry_button_text">RETRY</string>
     <string name="no_internet_connection">No Internet Connection</string>
+    <string name="width">Width: %s</string>
+    <string name="height">Height: %s</string>
+    <string name="detail_image_description">Cute cat image</string>
+    <string name="save_button_text">SAVE</string>
 </resources>
