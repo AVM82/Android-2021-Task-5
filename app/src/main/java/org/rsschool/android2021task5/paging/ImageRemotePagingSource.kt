@@ -21,7 +21,7 @@ class ImageRemotePagingSource(private val apiService: ApiService) :
             val pageSize = params.loadSize.coerceAtMost(MAX_PAGE_SIZE)
             val response = apiService.getImages(limit = pageSize, page = page)
             return if (response.isSuccessful) {
-                val images = response.body().orEmpty()
+                val images = response.body()?.map { it }.orEmpty()
                 val nextPageNumber = if (images.isEmpty()) null else page + 1
                 val prevPageNumber = if (page > 1) page - 1 else null
                 LoadResult.Page(
@@ -32,10 +32,10 @@ class ImageRemotePagingSource(private val apiService: ApiService) :
             } else {
                 LoadResult.Error(HttpException(response))
             }
-        } catch (e: HttpException) {
-            return LoadResult.Error(e)
-        } catch (e: Exception) {
-            return LoadResult.Error(e)
+        } catch (httpException: HttpException) {
+            return LoadResult.Error(httpException)
+        } catch (exception: Exception) {
+            return LoadResult.Error(exception)
         }
     }
 

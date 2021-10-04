@@ -21,6 +21,5 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun  provideRepository(remoteRepository: RemoteRepository): Repository = remoteRepository
-
+    fun provideRepository(remoteRepository: RemoteRepository): Repository = remoteRepository
 }

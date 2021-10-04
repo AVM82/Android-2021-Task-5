@@ -89,10 +89,13 @@ class DetailFragment : Fragment() {
             if (isGranted) {
                 saveImage()
             } else {
-                val snackBar = Snackbar.make(container, "Permission denied", Snackbar.LENGTH_LONG)
-                snackBar.show()
+                showMessage("Permission denied")
             }
         }
+    }
+
+    private fun DetailFragmentBinding.showMessage(msg: String) {
+        Snackbar.make(container, msg, Snackbar.LENGTH_LONG).show()
     }
 
     private fun DetailFragmentBinding.saveImage() {
@@ -104,5 +107,6 @@ class DetailFragment : Fragment() {
             context, arrayOf(path),
             null, null
         )
+        showMessage("Cute cat in your gallery now")
     }
 }

@@ -49,7 +49,7 @@ class DetailFragmentPresenter(private val contentResolver: ContentResolver) {
     private fun saveBitmap(bitmap: Bitmap, filename: String) {
         val output = makeOutputStream(filename)
         output?.use {
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, COMPRESS_QUALITY, it)
         }
         output?.close()
     }
@@ -68,5 +68,9 @@ class DetailFragmentPresenter(private val contentResolver: ContentResolver) {
             is BitmapDrawable -> saveBitmap(drawable.bitmap, filename)
         }
         return fullPath
+    }
+
+    companion object {
+        private const val COMPRESS_QUALITY = 100
     }
 }

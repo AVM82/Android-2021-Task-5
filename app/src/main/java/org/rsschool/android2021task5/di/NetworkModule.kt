@@ -43,15 +43,15 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(BASE_URL: String, moshi: Moshi, client: OkHttpClient): Retrofit {
+    fun provideRetrofit(baseUrl: String, moshi: Moshi, client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(client)
             .build()
     }
 
     companion object {
-        private const val TIME_OUT = 5L
+        private const val TIME_OUT = 7L
     }
 }

@@ -41,7 +41,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
 }
 
 detekt {
@@ -75,22 +74,22 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
 
-    //LOG http
+    // LOG http
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
-    //hilt
+    // Hilt
     val hiltVersion = "2.38.1"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
     kapt("androidx.hilt:hilt-compiler:1.0.0")
 
-    //Retrofit
+    // Retrofit
     val retrofitVersion = "2.9.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
 
-    //moshi
+    // Moshi
     val moshiVersion = "1.12.0"
     implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
     implementation("com.squareup.moshi:moshi:1.12.0")
@@ -100,7 +99,7 @@ dependencies {
     val glideVersion = "4.12.0"
     implementation("com.github.bumptech.glide:glide:$glideVersion")
 
-    //Paging 3
+    // Paging 3
     val pagingVersion = "3.0.1"
     implementation("androidx.paging:paging-runtime-ktx:$pagingVersion")
 
